@@ -1,0 +1,23 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "defaultValue": "UserIdentity-LJ-proj0923",
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "Southeast Asia",
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-11-30",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "properties": {}
+        }
+    ]
+}
