@@ -1,0 +1,81 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "defaultValue": "LJ-keyvault"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "Southeast Aisa"
+        },
+        "sku": {
+            "type": "string",
+            "defaultValue": "Standard"
+        },
+        "tenant": {
+            "type": "string",
+            "defaultValue": "f686d426-8d16-42db-81b7-ab578e110ccd"
+        },
+        "enabledForDeployment": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "enabledForTemplateDeployment": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "enabledForDiskEncryption": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "enableRbacAuthorization": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "enableSoftDelete": {
+            "type": "bool",
+            "defaultValue": true
+        },
+        "softDeleteRetentionInDays": {
+            "type": "int",
+            "defaultValue": 10
+        },
+        "networkAcls": {
+            "type": "object",
+            "defaultValue": {
+                "defaultAction": "allow",
+                "bypass": "AzureServices",
+                "ipRules": [],
+                "virtualNetworkRules": []
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2018-02-14",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "type": "Microsoft.KeyVault/vaults",
+            "properties": {
+                "enabledForDeployment": "[parameters('enabledForDeployment')]",
+                "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+                "enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]",
+                "enableRbacAuthorization": "[parameters('enableRbacAuthorization')]",
+                "tenantId": "[parameters('tenant')]",
+                "sku": {
+                    "name": "[parameters('sku')]",
+                    "family": "A"
+                },
+                "enableSoftDelete": "[parameters('enableSoftDelete')]",
+                "softDeleteRetentionInDays": "[parameters('softDeleteRetentionInDays')]",
+                "networkAcls": "[parameters('networkAcls')]"
+            },
+            "tags": {},
+            "dependsOn": []
+        }
+    ],
+    "outputs": {}
+}
